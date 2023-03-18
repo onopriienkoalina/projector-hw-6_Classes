@@ -24,6 +24,7 @@ class movieRatingOver7 extends Released {
     }
 }
 class ActionMovie extends movieRatingOver7{
+    #genre;
     constructor(filmDetails, rating) {
         super(
             filmDetails.title,
@@ -32,28 +33,22 @@ class ActionMovie extends movieRatingOver7{
             rating
         );
       this.budget = filmDetails.budget;
-      this.setGenre(filmDetails.genre);
+      this.#genre = filmDetails.genre;
     }
     
-    setGenre(genre) {
-     let _genre = genre;
-     this.getMovieGenre = function() {
-        return _genre;
-     }
-     this.genre = _genre;
-    }
-    getMovieGenre() {
-        return this.getMovieGenre();
+    get #movieGenre() { 
+        return this.#genre;
     }
     getRating() {
       return `${this.rating} rating over 7.`;
     }
     getDetails() {
-      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.getMovieGenre()}. Rating: ${this.rating} rating over 7.`;
+      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.#movieGenre}. Rating: ${this.rating} rating over 7.`;
     }
   }
   
   class ComedyMovie extends movieRatingOver7{
+    #genre;
     constructor(filmDetails, rating) {
         super(
             filmDetails.title,
@@ -62,29 +57,22 @@ class ActionMovie extends movieRatingOver7{
             rating
         );
       this.budget = filmDetails.budget;
-      this.setGenre(filmDetails.genre);
+      this.#genre = filmDetails.genre;
     }
     
-    setGenre(genre) {
-        let _genre = genre;
-        this.getMovieGenre = function() {
-           return _genre;
-        }
-        this.genre = _genre;
-       }
-
-    getMovieGenre() {
-        return this.getMovieGenre();
+    get #movieGenre() { 
+        return this.#genre;
     }
     getRating() {
       return `${this.rating} rating over 7.`;
     }
     getDetails() {
-      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.getMovieGenre()}. Rating: ${this.rating} rating over 7.`;
+      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.#movieGenre}. Rating: ${this.rating} rating over 7.`;
     }
   }
   
   class HorrorMovie extends Released{
+    #genre;
     constructor(filmDetails) {
         super(
             filmDetails.title,
@@ -92,30 +80,22 @@ class ActionMovie extends movieRatingOver7{
             filmDetails.yearReleased,
         );
         this.budget = filmDetails.budget;
-        this.setGenre(filmDetails.genre);
+        this.#genre = filmDetails.genre;
     }
 
-    setGenre(genre) {
-        let _genre = genre;
-        this.getMovieGenre = function() {
-           return _genre;
-        }
-
-        this.genre = _genre;
-       }
-
+    get #movieGenre() { 
+        return this.#genre;
+    }
     getTitle() {
         return this.title;
     }
-    getMovieGenre() {
-      return this.getMovieGenre();
-    }
     getDetails() {
-      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.getMovieGenre()}.`;
+      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.#movieGenre}.`;
     }
   }
   
   class SciFiMovie extends Released{
+    #genre
     constructor(filmDetails) {
         super(
         filmDetails.title,
@@ -123,25 +103,16 @@ class ActionMovie extends movieRatingOver7{
         filmDetails.yearReleased,
         );
       this.budget = filmDetails.budget;
-      this.setGenre(filmDetails.genre);
+      this.#genre = filmDetails.genre;
     }
-
-    setGenre(genre) {
-        let _genre = genre;
-        this.getMovieGenre = function() {
-           return _genre;
-        }
-        this.genre = _genre;
-       }
-
+    get #movieGenre() { 
+        return this.#genre;
+    }
     getTitle() {
         return this.title;
     }
-    getMovieGenre() {
-        return this.getMovieGenre();
-    }
     getDetails() {
-      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.getMovieGenre()}.`;
+      return `${this.title} (${this.yearReleased}) directed by ${this.director}. Budget: $${this.budget} million. Genre: ${this.#movieGenre}.`;
     }
   }
 let action = new ActionMovie({
@@ -149,30 +120,30 @@ let action = new ActionMovie({
     director: "Daniel Kwan",
     yearReleased: 2022,
     budget: 25,
+    genre: "Action"
   }, 7.8);
 let comedy = new ComedyMovie({
     title: "Triangle of Sadness",
     director: "Ruben Östlund",
     yearReleased: 2022,
     budget: 15,
+    genre: "Comedy"
   }, 7);
 let horror = new HorrorMovie({
     title: "The Amityville Horror",
     director: "Andrew Douglas",
     yearReleased: 2005,
     budget: 18,
+    genre: "Horror"
   });
 let sciFi = new SciFiMovie({
     title: "Space Samurai: Oasis",
     director: "Mark Maine",
     yearReleased: 2014,
     budget: 10,
+    genre: "Sci-Fi"
   });
-action.setGenre(`action`);
 console.log(action.getDetails()); 
-comedy.setGenre(`comedy`);
 console.log(comedy.getDetails());
-horror.setGenre(`horror`);
 console.log(horror.getDetails());
-sciFi.setGenre(`SciFi`);
 console.log(sciFi.getDetails());
